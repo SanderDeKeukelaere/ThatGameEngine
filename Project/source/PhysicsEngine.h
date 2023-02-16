@@ -1,4 +1,7 @@
 #pragma once
+
+class PhysicsComponent;
+
 class PhysicsEngine final
 {
 public:
@@ -11,6 +14,8 @@ public:
 	PhysicsEngine& operator=(PhysicsEngine&&) noexcept = delete;
 
 	void Update(float physicsTime);
+	void AddComponent(std::shared_ptr<PhysicsComponent> pComponent);
 private:
+	std::vector<std::weak_ptr<PhysicsComponent>> m_pComponents{};
 };
 

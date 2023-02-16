@@ -50,6 +50,11 @@ namespace dae {
 		if (m_pDevice) m_pDevice->Release();
 	}
 
+	void Renderer::AddComponent(std::shared_ptr<RenderComponent> pComponent)
+	{
+		m_pComponents.push_back(pComponent);
+	}
+
 	void Renderer::Update(const Timer* pTimer)
 	{
 		// Update camera movement
@@ -67,6 +72,10 @@ namespace dae {
 		m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 		// Set pipeline + Invoke drawcalls (= render)
+		for (const auto& pWeakComponent : m_pComponents)
+		{
+			// Render each component
+		}
 
 		// Present backbuffer (swap)
 		m_pSwapChain->Present(0, 0);

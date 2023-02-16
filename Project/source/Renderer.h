@@ -3,6 +3,8 @@
 struct SDL_Window;
 struct SDL_Surface;
 
+class RenderComponent;
+
 namespace dae
 {
 	class Camera;
@@ -18,6 +20,7 @@ namespace dae
 		Renderer& operator=(const Renderer&) = delete;
 		Renderer& operator=(Renderer&&) noexcept = delete;
 
+		void AddComponent(std::shared_ptr<RenderComponent> pComponent);
 		void Update(const Timer* pTimer);
 		void Render() const;
 
@@ -30,6 +33,7 @@ namespace dae
 		bool m_IsInitialized{ false };
 
 		Camera* m_pCamera{};
+		std::vector<std::weak_ptr<RenderComponent>> m_pComponents{};
 
 		//DIRECTX
 		ID3D11SamplerState* m_pSampleState{};

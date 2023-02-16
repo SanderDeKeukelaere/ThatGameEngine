@@ -8,6 +8,8 @@
 #include "Engine.h"
 #include "Renderer.h"
 #include "PhysicsEngine.h"
+#include "PhysicsComponent.h"
+#include "RenderComponent.h"
 
 using namespace dae;
 
@@ -43,6 +45,9 @@ int main(int argc, char* args[])
 	const auto pRenderer = new Renderer(pWindow);
 	const auto pPhysics{ new PhysicsEngine() };
 	const auto pEngine{ new Engine() };
+
+	PhysicsComponent::InitStaticMembers(pPhysics);
+	RenderComponent::InitStaticMembers(pRenderer);
 
 	//Start loop
 	pTimer->Start();

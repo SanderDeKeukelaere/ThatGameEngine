@@ -2,6 +2,8 @@
 
 using namespace dae;
 
+#include "GameObject.h"
+
 class Engine final
 {
 public:
@@ -15,5 +17,6 @@ public:
 
 	void Update(const Timer* pTimer);
 private:
+	std::vector<std::unique_ptr<GameObject>> m_pGameObjects{};
 };
 
