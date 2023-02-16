@@ -2,7 +2,7 @@
 #include <fstream>
 #include "Math.h"
 #include <vector>
-#include "Mesh.h"
+#include "DataTypes.h"
 
 namespace dae
 {
@@ -69,7 +69,7 @@ namespace dae
 					Vertex vertex{};
 					size_t iPosition, iTexCoord, iNormal;
 
-					uint32_t tempIndices[3];
+					uint32_t tempIndices[3]{};
 					for (size_t iFace = 0; iFace < 3; iFace++)
 					{
 						// OBJ format uses 1-based arrays

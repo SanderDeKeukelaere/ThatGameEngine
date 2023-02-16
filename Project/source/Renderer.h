@@ -24,6 +24,7 @@ namespace dae
 		void Update(const Timer* pTimer);
 		void Render() const;
 
+		ID3D11Device* GetDevice() const;
 	private:
 		SDL_Window* m_pWindow{};
 

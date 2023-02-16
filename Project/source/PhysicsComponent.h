@@ -9,7 +9,7 @@ class PhysicsEngine;
 class PhysicsComponent : public ObjectComponent, public std::enable_shared_from_this<PhysicsComponent>
 {
 public:
-	PhysicsComponent();
+	PhysicsComponent(std::shared_ptr<GameObject> pParent);
 	virtual ~PhysicsComponent() = default;
 
 	static void InitStaticMembers(PhysicsEngine* pPhysicsEngine);

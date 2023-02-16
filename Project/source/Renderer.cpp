@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "Renderer.h"
 #include "Camera.h"
+#include "RenderComponent.h"
+#include "MeshRenderer.h"
+#include "Material.h"
 
 namespace dae {
 
@@ -59,6 +62,14 @@ namespace dae {
 	{
 		// Update camera movement
 		m_pCamera->Update(pTimer);
+
+		const Matrix viewProjection{ m_pCamera->GetViewMatrix() * m_pCamera->GetProjectionMatrix() };
+
+		// Update matrices in components
+		for (const auto& pWeakComponent : m_pComponents)
+		{
+			pWeakComponent.lock()->SetMatrix(viewProjection);
+		}
 	}
 
 	void Renderer::Render() const
@@ -74,11 +85,16 @@ namespace dae {
 		// Set pipeline + Invoke drawcalls (= render)
 		for (const auto& pWeakComponent : m_pComponents)
 		{
-			// Render each component
+			pWeakComponent.lock()->Render(m_pDeviceContext);
 		}
 
 		// Present backbuffer (swap)
 		m_pSwapChain->Present(0, 0);
+	}
+
+	ID3D11Device* Renderer::GetDevice() const
+	{
+		return m_pDevice;
 	}
 
 	HRESULT Renderer::InitializeDirectX()

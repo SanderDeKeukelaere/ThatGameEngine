@@ -44,10 +44,11 @@ int main(int argc, char* args[])
 	const auto pTimer = new Timer();
 	const auto pRenderer = new Renderer(pWindow);
 	const auto pPhysics{ new PhysicsEngine() };
-	const auto pEngine{ new Engine() };
 
 	PhysicsComponent::InitStaticMembers(pPhysics);
 	RenderComponent::InitStaticMembers(pRenderer);
+
+	const auto pEngine{ new Engine() };
 
 	//Start loop
 	pTimer->Start();

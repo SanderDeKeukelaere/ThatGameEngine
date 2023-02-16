@@ -2,10 +2,12 @@
 
 using namespace dae;
 
+class GameObject;
+
 class ObjectComponent
 {
 public:
-	ObjectComponent() = default;
+	ObjectComponent(std::shared_ptr<GameObject> pParent);
 	virtual ~ObjectComponent() = default;
 
 	ObjectComponent(const ObjectComponent&) = delete;
@@ -15,5 +17,6 @@ public:
 
 	virtual void Update(const Timer* pTimer) = 0;
 protected:
+	std::weak_ptr<GameObject> m_pParent{};
 };
 

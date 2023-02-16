@@ -4,7 +4,8 @@
 
 PhysicsEngine* PhysicsComponent::m_pPhysicsEngine{};
 
-PhysicsComponent::PhysicsComponent()
+PhysicsComponent::PhysicsComponent(std::shared_ptr<GameObject> pParent)
+	: ObjectComponent{ pParent }
 {
 	if (!m_pPhysicsEngine) return;
 
