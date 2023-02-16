@@ -14,6 +14,9 @@
     <Filter Include="DataTypes">
       <UniqueIdentifier>{4e47e283-3b11-4bce-b725-eec07f47a578}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine Files">
+      <UniqueIdentifier>{bd423d8e-6812-4963-8f83-66b5ba473ce7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector3.h">
@@ -50,11 +53,20 @@
     <ClInclude Include="Texture.h">
       <Filter>DataTypes</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Engine.h">
+      <Filter>Engine Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Engine Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsEngine.h">
+      <Filter>Engine Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Vector3.cpp">
       <Filter>Math</Filter>
     </ClCompile>
@@ -80,6 +92,17 @@
     <ClCompile Include="Texture.cpp">
       <Filter>DataTypes</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Engine.cpp">
+      <Filter>Engine Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Engine Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Engine Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsEngine.cpp">
+      <Filter>Engine Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

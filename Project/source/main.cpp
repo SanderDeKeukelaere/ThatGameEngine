@@ -5,7 +5,9 @@
 #endif
 
 #undef main
+#include "Engine.h"
 #include "Renderer.h"
+#include "PhysicsEngine.h"
 
 using namespace dae;
 
@@ -24,8 +26,8 @@ int main(int argc, char* args[])
 	//Create window + surfaces
 	SDL_Init(SDL_INIT_VIDEO);
 
-	const uint32_t width = 640;
-	const uint32_t height = 480;
+	constexpr uint32_t width{ 640 };
+	constexpr uint32_t height{ 480 };
 
 	SDL_Window* pWindow = SDL_CreateWindow(
 		"DirecTX Engine - De Keukelaere Sander",
@@ -39,11 +41,15 @@ int main(int argc, char* args[])
 	//Initialize "framework"
 	const auto pTimer = new Timer();
 	const auto pRenderer = new Renderer(pWindow);
+	const auto pPhysics{ new PhysicsEngine() };
+	const auto pEngine{ new Engine() };
 
 	//Start loop
 	pTimer->Start();
-	float printTimer = 0.f;
-	bool isLooping = true;
+	float printTimer{};
+	float physicsTimer{};
+	constexpr float timePerPhysicsUpdate{ 1.0f / 30.0f };
+	bool isLooping{ true };
 	bool isShowingFPS{ false };
 	while (isLooping)
 	{
@@ -70,6 +76,15 @@ int main(int argc, char* args[])
 
 		//--------- Update ---------
 		pRenderer->Update(pTimer);
+		pEngine->Update(pTimer);
+		
+		//----- Update Physics -----
+		physicsTimer += pTimer->GetElapsed();
+		if (physicsTimer >= timePerPhysicsUpdate)
+		{
+			pPhysics->Update(physicsTimer);
+			physicsTimer = 0.0f;
+		}
 
 		//--------- Render ---------
 		pRenderer->Render();
@@ -86,6 +101,8 @@ int main(int argc, char* args[])
 	pTimer->Stop();
 
 	//Shutdown "framework"
+	delete pEngine;
+	delete pPhysics;
 	delete pRenderer;
 	delete pTimer;
 
