@@ -13,7 +13,7 @@ public:
 	Transform& operator=(const Transform&) = delete;
 	Transform& operator=(Transform&&) noexcept = delete;
 
-	Matrix GetTranslationMatrix() const;
+	Matrix GetTransformationMatrix() const;
 
 	virtual void Update(const Timer* pTimer) override;
 private:

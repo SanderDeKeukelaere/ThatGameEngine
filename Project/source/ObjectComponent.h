@@ -2,7 +2,7 @@
 
 using namespace dae;
 
-class GameObject;
+#include "GameObject.h"
 
 class ObjectComponent
 {
@@ -26,5 +26,5 @@ protected:
 template<class T>
 inline std::shared_ptr<T> ObjectComponent::GetComponent() const
 {
-	return m_pParent->GetComponent<T>();
+	return m_pParent.lock()->GetComponent<T>();
 }

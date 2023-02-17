@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ObjectComponent.h"
+class ObjectComponent;
 
 using namespace dae;
 
@@ -33,4 +33,6 @@ inline std::shared_ptr<T> GameObject::GetComponent() const
 
 		if (derivedComponent) return derivedComponent;
 	}
+
+	return nullptr;
 }

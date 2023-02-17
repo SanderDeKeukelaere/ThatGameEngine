@@ -6,7 +6,7 @@ Transform::Transform(std::shared_ptr<GameObject> pParent)
 {
 }
 
-Matrix Transform::GetTranslationMatrix() const
+Matrix Transform::GetTransformationMatrix() const
 {
     return m_TranslationMatrix * m_RotationMatrix * m_ScaleMatrix;
 }
