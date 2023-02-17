@@ -16,7 +16,15 @@ public:
 	ObjectComponent& operator=(ObjectComponent&&) noexcept = delete;
 
 	virtual void Update(const Timer* pTimer) = 0;
+
+	template <class T>
+	std::shared_ptr<T> GetComponent() const;
 protected:
 	std::weak_ptr<GameObject> m_pParent{};
 };
 
+template<class T>
+inline std::shared_ptr<T> ObjectComponent::GetComponent() const
+{
+	return m_pParent->GetComponent<T>();
+}
