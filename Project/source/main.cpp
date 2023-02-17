@@ -10,6 +10,7 @@
 #include "PhysicsEngine.h"
 #include "PhysicsComponent.h"
 #include "RenderComponent.h"
+#include "Collider.h"
 
 using namespace dae;
 
@@ -47,6 +48,7 @@ int main(int argc, char* args[])
 
 	PhysicsComponent::InitStaticMembers(pPhysics);
 	RenderComponent::InitStaticMembers(pRenderer);
+	Collider::InitStaticMembers(pPhysics);
 
 	const auto pEngine{ new Engine(pRenderer, static_cast<float>(width) / height) };
 

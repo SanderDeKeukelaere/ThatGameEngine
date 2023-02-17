@@ -11,3 +11,9 @@ struct Vertex final
 	Vector3 tangent;
 	Vector2 uv;
 };
+
+struct CollisionData final
+{
+	bool isColliding{};
+	const std::vector<std::pair<Vector3, Vector3>> intersections{};
+};

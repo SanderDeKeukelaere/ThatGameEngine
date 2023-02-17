@@ -8,7 +8,7 @@ Transform::Transform(std::shared_ptr<GameObject> pParent)
 
 Matrix Transform::GetTransformationMatrix() const
 {
-    return m_TranslationMatrix * m_RotationMatrix * m_ScaleMatrix;
+    return m_ScaleMatrix * m_RotationMatrix * m_TranslationMatrix;
 }
 
 Vector3 Transform::GetPosition() const

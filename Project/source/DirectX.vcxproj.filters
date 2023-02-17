@@ -20,6 +20,18 @@
     <Filter Include="Components">
       <UniqueIdentifier>{a17a2aad-15f6-411d-9c0b-f2f618a57fc8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\General">
+      <UniqueIdentifier>{b1c1b2a5-81da-44ae-8424-24eafc7db8fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Base">
+      <UniqueIdentifier>{f66c4dc8-73c5-46d5-869e-5e101cf1ebb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Colliders">
+      <UniqueIdentifier>{c415e844-8a57-4c2f-9486-4b0730e73c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Player">
+      <UniqueIdentifier>{9e921f15-88eb-4f6c-9f11-b9c8c7f3010c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector3.h">
@@ -71,29 +83,38 @@
     <ClInclude Include="GameObject.h">
       <Filter>DataTypes</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="DataTypes.h">
       <Filter>DataTypes</Filter>
     </ClInclude>
     <ClInclude Include="DebugMaterial.h">
       <Filter>Effects</Filter>
     </ClInclude>
-    <ClInclude Include="MeshRenderer.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="ObjectComponent.h">
+      <Filter>Components\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Components</Filter>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Components\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderComponent.h">
+      <Filter>Components\Base</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Components</Filter>
+      <Filter>Components\General</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>Components\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Components\General</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Components\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Components\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Components\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,23 +158,32 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>DataTypes</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="DebugMaterial.cpp">
       <Filter>Effects</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="ObjectComponent.cpp">
+      <Filter>Components\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Components\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderComponent.cpp">
+      <Filter>Components\Base</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Components\General</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Components\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Components\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Components\Base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

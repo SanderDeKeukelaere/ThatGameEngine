@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "GameObject.h"
 #include "ObjectComponent.h"
+#include "PhysicsComponent.h"
 
 void GameObject::AddComponent(std::shared_ptr<ObjectComponent> pComponent)
 {
