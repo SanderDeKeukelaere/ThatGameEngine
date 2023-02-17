@@ -22,9 +22,16 @@ public:
 	Vector3 GetPosition() const;
 	Vector3 GetRotation() const;
 	Vector3 GetScale() const;
+	Vector3 GetForward() const;
+	Vector3 GetRight() const;
+	Vector3 GetUp() const;
 private:
 	Matrix m_TranslationMatrix{};
 	Matrix m_RotationMatrix{};
 	Matrix m_ScaleMatrix{};
+
+	Vector3 m_Forward{ Vector3::UnitZ };
+	Vector3 m_Right{ Vector3::UnitX };
+	Vector3 m_Up{ Vector3::UnitY };
 };
 

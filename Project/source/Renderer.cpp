@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "Renderer.h"
-#include "Camera.h"
 #include "RenderComponent.h"
 #include "MeshRenderer.h"
 #include "Material.h"
+#include "Camera.h"
 
 namespace dae {
 
@@ -24,16 +24,10 @@ namespace dae {
 		{
 			std::cout << "DirectX initialization failed!\n";
 		}
-
-		// Create and initialize the camera
-		m_pCamera = new Camera{};
-		m_pCamera->Initialize(45.0f, { 0.0f, 0.0f, -50.0f }, static_cast<float>(m_Width) / m_Height);
 	}
 
 	Renderer::~Renderer()
 	{
-		delete m_pCamera;
-
 		if (m_pSampleState) m_pSampleState->Release();
 
 		if (m_pRenderTargetView) m_pRenderTargetView->Release();
@@ -53,6 +47,11 @@ namespace dae {
 		if (m_pDevice) m_pDevice->Release();
 	}
 
+	void Renderer::SetCamera(std::shared_ptr<Camera> pCamera)
+	{
+		m_pCamera = pCamera;
+	}
+
 	void Renderer::AddComponent(std::shared_ptr<RenderComponent> pComponent)
 	{
 		m_pComponents.push_back(pComponent);
@@ -60,8 +59,7 @@ namespace dae {
 
 	void Renderer::Update(const Timer* pTimer)
 	{
-		// Update camera movement
-		m_pCamera->Update(pTimer);
+		if (!m_pCamera) return;
 
 		const Matrix viewProjection{ m_pCamera->GetViewMatrix() * m_pCamera->GetProjectionMatrix() };
 
@@ -77,19 +75,32 @@ namespace dae {
 		if (!m_IsInitialized)
 			return;
 
-		// Clear RTV and DSV
-		ColorRGB clearColor{ 0.0f, 0.0f, 0.3f };
-		m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView, &clearColor.r);
-		m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-
-		// Set pipeline + Invoke drawcalls (= render)
-		for (const auto& pWeakComponent : m_pComponents)
+		if (!m_pCamera)
 		{
-			pWeakComponent.lock()->Render(m_pDeviceContext);
-		}
+			// Clear RTV and DSV
+			ColorRGB clearColor{ 0.0f, 0.0f, 0.0f };
+			m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView, &clearColor.r);
+			m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-		// Present backbuffer (swap)
-		m_pSwapChain->Present(0, 0);
+			// Present backbuffer (swap)
+			m_pSwapChain->Present(0, 0);
+		}
+		else
+		{
+			// Clear RTV and DSV
+			ColorRGB clearColor{ 0.0f, 0.0f, 0.3f };
+			m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView, &clearColor.r);
+			m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+			// Set pipeline + Invoke drawcalls (= render)
+			for (const auto& pWeakComponent : m_pComponents)
+			{
+				pWeakComponent.lock()->Render(m_pDeviceContext);
+			}
+
+			// Present backbuffer (swap)
+			m_pSwapChain->Present(0, 0);
+		}
 	}
 
 	ID3D11Device* Renderer::GetDevice() const

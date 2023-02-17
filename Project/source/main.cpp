@@ -48,7 +48,7 @@ int main(int argc, char* args[])
 	PhysicsComponent::InitStaticMembers(pPhysics);
 	RenderComponent::InitStaticMembers(pRenderer);
 
-	const auto pEngine{ new Engine() };
+	const auto pEngine{ new Engine(pRenderer, static_cast<float>(width) / height) };
 
 	//Start loop
 	pTimer->Start();

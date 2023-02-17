@@ -4,10 +4,11 @@ struct SDL_Window;
 struct SDL_Surface;
 
 class RenderComponent;
+class Camera;
 
 namespace dae
 {
-	class Camera;
+	class CameraNoComponent;
 
 	class Renderer final
 	{
@@ -20,6 +21,7 @@ namespace dae
 		Renderer& operator=(const Renderer&) = delete;
 		Renderer& operator=(Renderer&&) noexcept = delete;
 
+		void SetCamera(std::shared_ptr<Camera> pCamera);
 		void AddComponent(std::shared_ptr<RenderComponent> pComponent);
 		void Update(const Timer* pTimer);
 		void Render() const;
@@ -33,7 +35,8 @@ namespace dae
 
 		bool m_IsInitialized{ false };
 
-		Camera* m_pCamera{};
+		std::shared_ptr<Camera> m_pCamera{};
+		//CameraNoComponent* m_pCamera{};
 		std::vector<std::weak_ptr<RenderComponent>> m_pComponents{};
 
 		//DIRECTX

@@ -31,6 +31,21 @@ Vector3 Transform::GetScale() const
     return Vector3{ m_ScaleMatrix[0].x, m_ScaleMatrix[1].y, m_ScaleMatrix[2].z };
 }
 
+Vector3 Transform::GetForward() const
+{
+    return m_Forward;
+}
+
+Vector3 Transform::GetRight() const
+{
+    return m_Right;
+}
+
+Vector3 Transform::GetUp() const
+{
+    return m_Up;
+}
+
 void Transform::Update(const Timer* pTimer)
 {
 }
@@ -45,6 +60,11 @@ void Transform::SetPosition(const Vector3& position)
 void Transform::SetRotation(const Vector3& rotation)
 {
     m_RotationMatrix = Matrix::CreateRotation(rotation * TO_RADIANS);
+
+    // Calculate the new forward, right and up vector
+    m_Forward = m_RotationMatrix.TransformVector(Vector3::UnitZ).Normalized();
+    m_Right = Vector3::Cross(Vector3::UnitY, m_Forward).Normalized();
+    m_Up = Vector3::Cross(m_Forward, m_Right).Normalized();
 }
 
 void Transform::SetScale(const Vector3& scale)

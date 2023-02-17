@@ -2,12 +2,16 @@
 
 using namespace dae;
 
-#include "GameObject.h"
+class GameObject;
+namespace dae
+{
+	class Renderer;
+}
 
 class Engine final
 {
 public:
-	Engine();
+	Engine(Renderer* pRenderer, float aspectRatio);
 	~Engine();
 
 	Engine(const Engine&) = delete;
