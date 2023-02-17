@@ -89,6 +89,9 @@
     <ClInclude Include="MeshRenderer.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vector3.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="DebugMaterial.cpp">
       <Filter>Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
