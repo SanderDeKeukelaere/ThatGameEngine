@@ -15,5 +15,22 @@ struct Vertex final
 struct CollisionData final
 {
 	bool isColliding{};
-	const std::vector<std::pair<Vector3, Vector3>> intersections{};
+	Vector3 newPosition{};
+	Vector3 normal{};
+};
+
+struct RaycastData final
+{
+	bool succeeded{};
+	float distance{};
+	Vector3 origin{};
+	Vector3 point{};
+	Vector3 normal{};
+};
+
+struct RaycastFaceData final
+{
+	bool succeeded{};
+	Vector3 point{};
+	float t{};
 };

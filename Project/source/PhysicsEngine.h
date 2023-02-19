@@ -25,10 +25,14 @@ public:
 	void AddCollider(std::shared_ptr<Collider> pCollider);
 
 	static std::tuple<Vector2, Vector2, Vector2> GetBounds(const std::pair<Vector3, Vector3>& startAndEndPosition);
-	static CollisionData IsBoxCollision(std::shared_ptr<BoxCollider> pFirst, std::shared_ptr<BoxCollider> pSecond);
-	static std::pair<bool, Vector3> IsLineSegmentFaceIntersect(const std::vector<Vector3>& face, const Vector3& startLine, const Vector3& endLine);
+	static CollisionData HandleBoxCollision(std::shared_ptr<BoxCollider> pCollider, const Vector3& velocity, bool ignoreNormals = false);
+	static CollisionData IsBoxCollision(std::shared_ptr<BoxCollider> pCollider);
+	static RaycastData Raycast(const Vector3& start, const Vector3& end, std::shared_ptr<BoxCollider> pIgnore = nullptr);
+	static bool IsInBox(const Vector3& position, std::shared_ptr<BoxCollider> pIgnore);
+	static RaycastData RaycastBox(const Vector3& start, const Vector3& end, std::shared_ptr<BoxCollider> pTarget);
+	static RaycastFaceData IsLineSegmentFaceIntersect(const std::vector<Vector3>& face, const Vector3& startLine, const Vector3& endLine);
 private:
-	std::vector<std::weak_ptr<PhysicsComponent>> m_pComponents{};
-	std::vector<std::weak_ptr<Collider>> m_pColliders{};
+	static std::vector<std::weak_ptr<PhysicsComponent>> m_pComponents;
+	static std::vector<std::weak_ptr<Collider>> m_pColliders;
 };
 

@@ -25,6 +25,7 @@ namespace dae
 		static Vector3 Project(const Vector3& v1, const Vector3& v2);
 		static Vector3 Reject(const Vector3& v1, const Vector3& v2);
 		static Vector3 Reflect(const Vector3& v1, const Vector3& v2);
+		static Vector3 Lerp(const Vector3& v1, const Vector3& v2, float a);
 
 		Vector4 ToPoint4() const;
 		Vector4 ToVector4() const;
@@ -33,6 +34,7 @@ namespace dae
 
 		//Member Operators
 		Vector3 operator*(float scale) const;
+		Vector3 operator*(const Vector3& v) const;
 		Vector3 operator/(float scale) const;
 		Vector3 operator+(const Vector3& v) const;
 		Vector3 operator-(const Vector3& v) const;

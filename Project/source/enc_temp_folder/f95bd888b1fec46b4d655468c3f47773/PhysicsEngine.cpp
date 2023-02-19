@@ -224,6 +224,46 @@ CollisionData PhysicsEngine::HandleBoxCollision(std::shared_ptr<BoxCollider> pCo
 	}
 
 	return {};
+
+	//// Get all the vertices of the first box collider in clockwise order
+	//const std::vector<Vector3> vertices
+	//{
+	//	position - scale.x * right + scale.y * up + scale.z * forward,
+	//	position + scale.x * right + scale.y * up + scale.z * forward,
+	//	position + scale.x * right - scale.y * up + scale.z * forward,
+	//	position - scale.x * right - scale.y * up + scale.z * forward,
+	//	position - scale.x * right + scale.y * up - scale.z * forward,
+	//	position + scale.x * right + scale.y * up - scale.z * forward,
+	//	position + scale.x * right - scale.y * up - scale.z * forward,
+	//	position - scale.x * right - scale.y * up - scale.z * forward,
+	//};
+
+	//float closestRaycast{ FLT_MAX };
+	//RaycastData data{};
+
+	//for (const Vector3& vertex : vertices)
+	//{
+	//	RaycastData raycast{ Raycast(vertex, vertex + velocity, pCollider) };
+
+	//	if (!raycast.succeeded) continue;
+
+	//	if (!ignoreNormals)
+	//	{
+	//		if (Vector3::Dot(raycast.normal, velocity.Normalized()) > 0.0f) continue;
+	//	}
+
+	//	if (raycast.distance < closestRaycast)
+	//	{
+	//		closestRaycast = raycast.distance;
+	//		data = raycast;
+	//	}
+	//}
+
+	//if (!data.succeeded) return {};
+
+	//const Vector3 vertexPosition{ data.origin - position };
+
+	//return CollisionData{ true, data.point - vertexPosition, data.normal };
 }
 
 CollisionData PhysicsEngine::IsBoxCollision(std::shared_ptr<BoxCollider> pCollider)
@@ -301,6 +341,19 @@ bool PhysicsEngine::IsInBox(const Vector3& position, std::shared_ptr<BoxCollider
 			{
 				return true;
 			}
+			/*auto b{ pBoxCollider->GetStartAndEndPosition() };
+
+			const float left{ std::min(b.first.x, b.second.x) };
+			const float right{ std::max(b.first.x, b.second.x) };
+			const float down{ std::min(b.first.y, b.second.y) };
+			const float up{ std::max(b.first.y, b.second.y) };
+			const float back{ std::min(b.first.z, b.second.z) };
+			const float forward{ std::max(b.first.z, b.second.z) };
+
+			if (position.x > left && position.x < right && position.y > down && position.y < up && position.z > back && position.z < forward)
+			{
+				return true;
+			}*/
 		}
 	}
 

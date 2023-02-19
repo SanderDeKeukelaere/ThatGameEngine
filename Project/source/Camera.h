@@ -28,6 +28,7 @@ public:
 	virtual void Update(const Timer* pTimer) override;
 private:
 	std::weak_ptr<Transform> m_pTransform{};
+	std::weak_ptr<Transform> m_pParentTransform{};
 
 	float m_FovAngle{ 90.f };
 	float m_Fov{ tanf((m_FovAngle * TO_RADIANS) / 2.f) };

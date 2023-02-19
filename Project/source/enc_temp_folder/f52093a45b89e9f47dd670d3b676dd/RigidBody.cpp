@@ -33,6 +33,24 @@ void RigidBody::Update(float elapsedSec, const std::vector<std::weak_ptr<Collide
 	{
 		auto pBoxCollider{ std::dynamic_pointer_cast<BoxCollider>(pCollider) };
 
+		/*if (m_MoveFromCollision)
+		{
+			CollisionData rotationCollision{ PhysicsEngine::IsBoxCollision(pBoxCollider) };
+
+			if (rotationCollision.isColliding)
+			{
+				Vector3 collisionVelocity{ pTransform->GetPosition() - rotationCollision.newPosition };
+
+				auto collision = PhysicsEngine::HandleBoxCollision(pBoxCollider, collisionVelocity, true);
+
+				if (collision.isColliding)
+				{
+					pTransform->SetPosition(collision.newPosition);
+					collisionVelocity -= Vector3::Project(collisionVelocity, collision.normal);
+				}
+			}
+		}*/
+
 		for (int i{}; i < 3; ++i)
 		{
 			auto collision = PhysicsEngine::HandleBoxCollision(pBoxCollider, m_Velocity * elapsedSec);

@@ -98,9 +98,6 @@
     <ClInclude Include="RenderComponent.h">
       <Filter>Components\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Components\General</Filter>
-    </ClInclude>
     <ClInclude Include="MeshRenderer.h">
       <Filter>Components\General</Filter>
     </ClInclude>
@@ -115,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Components\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterController.h">
+      <Filter>Components\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Components\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +173,6 @@
     <ClCompile Include="RenderComponent.cpp">
       <Filter>Components\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Components\General</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Components\General</Filter>
     </ClCompile>
@@ -184,6 +184,12 @@
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Components\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterController.cpp">
+      <Filter>Components\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Components\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -28,6 +28,7 @@ private:
 
 	static PhysicsEngine* m_pPhysicsEngine;
 
+protected:
 	std::weak_ptr<Transform> m_pTransform{};
 };
 

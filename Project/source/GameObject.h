@@ -7,7 +7,7 @@ using namespace dae;
 class GameObject final
 {
 public:
-	GameObject() = default;
+	GameObject(std::shared_ptr<GameObject> pParent = nullptr);
 	~GameObject() = default;
 
 	GameObject(const GameObject&) = delete;
@@ -20,8 +20,10 @@ public:
 
 	template <class T>
 	std::shared_ptr<T> GetComponent() const;
+	std::shared_ptr<GameObject> GetParent() const;
 private:
 	std::vector<std::shared_ptr<ObjectComponent>> m_pComponents{};
+	std::weak_ptr<GameObject> m_pParent{};
 };
 
 template<class T>
