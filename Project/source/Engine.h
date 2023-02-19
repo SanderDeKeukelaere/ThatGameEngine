@@ -20,6 +20,7 @@ public:
 	Engine& operator=(Engine&&) noexcept = delete;
 
 	void CreateCube(const Vector3& position, const Vector3& rotation, const Vector3& scale);
+	void CreateChunk(const Vector3& position);
 
 	void Update(const Timer* pTimer);
 private:
