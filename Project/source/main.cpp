@@ -91,7 +91,7 @@ int main(int argc, char* args[])
 		if (physicsTimer >= timePerPhysicsUpdate)
 		{
 			pPhysics->Update(physicsTimer);
-			physicsTimer = 0.0f;
+			physicsTimer = physicsTimer - timePerPhysicsUpdate;
 		}
 
 		//--------- Render ---------
