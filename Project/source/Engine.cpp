@@ -31,6 +31,11 @@ Engine::Engine(Renderer* pRenderer, float aspectRatio)
 	CreateChunk({ 0.0f, -1.0f, 25.0f });
 	CreateChunk({ 0.0f, 1.5f, -25.0f });
 
+	CreatePlayer(aspectRatio, pRenderer);
+}
+
+void Engine::CreatePlayer(float& aspectRatio, dae::Renderer* pRenderer)
+{
 	const auto pPlayer{ std::make_shared<GameObject>() };
 	pPlayer->AddComponent(std::make_shared<Transform>(pPlayer));
 	pPlayer->AddComponent(std::make_shared<CharacterController>(pPlayer));
@@ -44,7 +49,7 @@ Engine::Engine(Renderer* pRenderer, float aspectRatio)
 	pCamera->AddComponent(std::make_shared<Camera>(pCamera, 90.0f, aspectRatio));
 	m_pGameObjects.push_back(pCamera);
 	pRenderer->SetCamera(pCamera->GetComponent<Camera>());
-	pCamera->GetComponent<Transform>()->SetPosition({ 0.0f, 0.5f, 0.0f });
+	pCamera->GetComponent<Transform>()->SetPosition({ 0.0f, 0.25f, 0.0f });
 }
 
 Engine::~Engine()

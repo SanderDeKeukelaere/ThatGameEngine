@@ -12,6 +12,7 @@ class Engine final
 {
 public:
 	Engine(Renderer* pRenderer, float aspectRatio);
+	void CreatePlayer(float& aspectRatio, dae::Renderer* pRenderer);
 	~Engine();
 
 	Engine(const Engine&) = delete;
