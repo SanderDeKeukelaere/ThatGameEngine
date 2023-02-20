@@ -18,6 +18,5 @@ public:
 	virtual void Update(const Timer* pTimer) override;
 private:
 	std::weak_ptr<Transform> m_pTransform{};
-	bool m_IsJumping{};
 };
 

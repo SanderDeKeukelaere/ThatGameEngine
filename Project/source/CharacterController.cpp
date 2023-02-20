@@ -1,7 +1,10 @@
 #include "pch.h"
 #include "CharacterController.h"
+
+#include "PhysicsEngine.h"
 #include "Transform.h"
 #include "RigidBody.h"
+#include "BoxCollider.h"
 
 CharacterController::CharacterController(std::shared_ptr<GameObject> pParent)
 	: ObjectComponent{ pParent }
@@ -12,6 +15,7 @@ CharacterController::CharacterController(std::shared_ptr<GameObject> pParent)
 void CharacterController::Update(const Timer* pTimer)
 {
 	auto pTransform{ m_pTransform.lock() };
+	auto pCollider{ GetComponent<BoxCollider>() };
 	auto pRigidBody{ GetComponent<RigidBody>() };
 
 	// Speed constants
@@ -41,15 +45,11 @@ void CharacterController::Update(const Timer* pTimer)
 
 	if (pKeyboardState[SDL_SCANCODE_SPACE])
 	{
-		if (!m_IsJumping)
+		const float raycastMultiplier{ 1.1f };
+		if (PhysicsEngine::Raycast(pTransform->GetPosition(), pTransform->GetPosition() - pTransform->GetUp() * pTransform->GetScale().y * pCollider->GetSize() / 2.0f * raycastMultiplier, pCollider).succeeded)
 		{
 			velocity.y = 5.0f;
-			m_IsJumping = true;
 		}
-	}
-	else
-	{
-		m_IsJumping = false;
 	}
 
 	// Apply the direction to the transform
