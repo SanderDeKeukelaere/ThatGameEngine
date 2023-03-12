@@ -24,35 +24,43 @@ void RigidBody::Update(float elapsedSec, const std::vector<std::weak_ptr<Collide
 
 	m_Velocity += m_Gravity * elapsedSec;
 
+	m_NextVelocity = m_Velocity;
+
 	auto pCollider{ m_pCollider.lock() };
 	auto pTransform{ m_pTransform.lock() };
 
-	bool colliding{};
-	
 	if (std::dynamic_pointer_cast<BoxCollider>(pCollider))
 	{
 		auto pBoxCollider{ std::dynamic_pointer_cast<BoxCollider>(pCollider) };
 
-		for (int i{}; i < 3; ++i)
+		for (const auto& pOtherCollider : pColliders)
 		{
-			auto collision = PhysicsEngine::HandleBoxCollision(pBoxCollider, m_Velocity * elapsedSec);
+			if (pOtherCollider.expired()) continue;
+						
+			auto collision = PhysicsEngine::HandleBoxCollision(pBoxCollider, pOtherCollider.lock(), m_NextVelocity * elapsedSec);
 
-			if (collision.isColliding)
-			{
-				pTransform->SetPosition(collision.newPosition);
+			if (!collision.isColliding) continue;
 
-				m_Velocity -= Vector3::Project(m_Velocity, collision.normal);
-
-				colliding = true;
-			}
+			m_NextVelocity += collision.velocityToFix / elapsedSec;
 		}
 	}
 
-	pTransform->SetPosition(pTransform->GetPosition() + m_Velocity * elapsedSec);
-	pTransform->SetRotation(pTransform->GetRotation() + m_AngularVelocity * elapsedSec);
+	m_NextPosition = pTransform->GetPosition() + m_NextVelocity * elapsedSec;
+	m_NextRotation = pTransform->GetRotation() + m_NextAngularVelocity * elapsedSec;
+}
+
+void RigidBody::ApplyPhysicsStep()
+{
+	auto pTransform{ m_pTransform.lock() };
 
 	m_PrevPosition = pTransform->GetPosition();
 	m_PrevRotation = pTransform->GetRotation();
+
+	m_Velocity = m_NextVelocity;
+	m_AngularVelocity = m_NextAngularVelocity;
+
+	pTransform->SetPosition(m_NextPosition);
+	pTransform->SetRotation(m_NextRotation);
 }
 
 Vector3 RigidBody::GetVelocity() const

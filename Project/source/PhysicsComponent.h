@@ -22,6 +22,7 @@ public:
 
 	virtual void Update(const Timer* pTimer) override;
 	virtual void Update(float elapsedSec, const std::vector<std::weak_ptr<Collider>>& pColliders) = 0;
+	virtual void ApplyPhysicsStep() = 0;
 protected:
 	bool m_AddedToPhysicsEngine{};
 

@@ -27,7 +27,7 @@ Engine::Engine(Renderer* pRenderer, float aspectRatio)
 
 	CreateChunk({});
 	CreateChunk({ 25.0f, 0.5f, 0.0f });
-	CreateChunk({ -25.0f, 3.5f, 0.0f });
+	CreateChunk({ -25.0f, 2.5f, 0.0f });
 	CreateChunk({ 0.0f, -1.0f, 25.0f });
 	CreateChunk({ 0.0f, 1.5f, -25.0f });
 

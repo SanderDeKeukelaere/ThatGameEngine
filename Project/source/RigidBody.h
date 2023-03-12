@@ -16,6 +16,7 @@ public:
 	RigidBody& operator=(RigidBody&&) noexcept = delete;
 
 	virtual void Update(float elapsedSec, const std::vector<std::weak_ptr<Collider>>& pColliders) override;
+	virtual void ApplyPhysicsStep() override;
 
 	Vector3 GetVelocity() const;
 	void SetVelocity(const Vector3& velocity);
@@ -33,5 +34,10 @@ private:
 	Vector3 m_Velocity{};
 	Vector3 m_AngularVelocity{};
 	const static Vector3 m_Gravity;
+
+	Vector3 m_NextPosition{};
+	Vector3 m_NextRotation{};
+	Vector3 m_NextVelocity{};
+	Vector3 m_NextAngularVelocity{};
 };
 

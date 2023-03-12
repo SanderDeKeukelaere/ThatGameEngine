@@ -16,6 +16,7 @@ struct CollisionData final
 {
 	bool isColliding{};
 	Vector3 newPosition{};
+	Vector3 velocityToFix{};
 	Vector3 normal{};
 };
 

@@ -25,7 +25,7 @@ public:
 	void AddCollider(std::shared_ptr<Collider> pCollider);
 
 	static std::tuple<Vector2, Vector2, Vector2> GetBounds(const std::pair<Vector3, Vector3>& startAndEndPosition);
-	static CollisionData HandleBoxCollision(std::shared_ptr<BoxCollider> pCollider, const Vector3& velocity, bool ignoreNormals = false);
+	static CollisionData HandleBoxCollision(std::shared_ptr<BoxCollider> pCollider, std::shared_ptr<Collider> pOtherCollider, const Vector3& velocity, bool ignoreNormals = false);
 	static CollisionData IsBoxCollision(std::shared_ptr<BoxCollider> pCollider);
 	static RaycastData Raycast(const Vector3& start, const Vector3& end, std::shared_ptr<BoxCollider> pIgnore = nullptr);
 	static bool IsInBox(const Vector3& position, std::shared_ptr<BoxCollider> pIgnore);

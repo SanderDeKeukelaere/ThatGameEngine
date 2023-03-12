@@ -90,7 +90,7 @@ int main(int argc, char* args[])
 		physicsTimer += pTimer->GetElapsed();
 		if (physicsTimer >= timePerPhysicsUpdate)
 		{
-			pPhysics->Update(physicsTimer);
+			pPhysics->Update(timePerPhysicsUpdate);
 			physicsTimer = physicsTimer - timePerPhysicsUpdate;
 		}
 
